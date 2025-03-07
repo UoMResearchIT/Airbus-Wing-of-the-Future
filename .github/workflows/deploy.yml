@@ -18,7 +18,7 @@ jobs:
 
       - name: Convert Markdown to HTML using Marp Docker
         run: |
-          docker run --rm -v $PWD:/slides marpteam/marp-cli slides.md -o slides.html
+          docker run --rm -v $PWD:/slides marpteam/marp-cli -o slides.html slides.md 
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
