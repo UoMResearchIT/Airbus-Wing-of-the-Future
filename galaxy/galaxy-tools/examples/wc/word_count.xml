@@ -1,0 +1,25 @@
+<tool id="word_count" name="Word Count" version="0.1.0">
+  <description>Counting words in a string</description>
+  
+  <requirements>
+    <container type="docker">python:3.13-slim</container>
+  </requirements>
+  
+  <command>
+    <![CDATA[
+    python '$__tool_directory__/word_count.py' --input_str '$input_str' --output_file '$output_file'
+    ]]>
+  </command>
+
+  <inputs>
+    <param type="text" name="input_str" label="Input String" help="Enter the string to count the words" />
+  </inputs>
+
+  <outputs>
+    <data format="txt" name="output_file" label="Word Count" help="Output file containing the word count" />
+  </outputs>
+  
+  <help>
+    This tool counts the number of words in a string.
+  </help>
+</tool>

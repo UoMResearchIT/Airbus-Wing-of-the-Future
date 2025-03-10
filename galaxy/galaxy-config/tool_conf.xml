@@ -6,28 +6,9 @@
   <section id="send" name="Send Data">
     <tool file="cloud/send.xml" />
   </section>
-  <section id="simple" name="Simple Example Tools">
-    <tool file="simple/1/1.xml" />
-    <tool file="simple/2/2.xml" />
-    <tool file="simple/3/3.xml" />
-    <tool file="simple/4/4.xml" />
-    <tool file="simple/5/5.xml" />
-  </section>
-  <section id="complex" name="Complex Example Tools">
-    <tool file="complex/openmc/openmc.xml"/>
-    <tool file="complex/h5m_to_vtk/h5m_to_vtk.xml"/>
-    <tool file="complex/tracks_to_vtp/tracks_to_vtp.xml"/>
-    <tool file="complex/h5m_to_stl/h5m_to_stl.xml"/>
-    <tool file="complex/stl_to_obj/stl_to_obj.xml"/>
-    <tool file="complex/obj_to_usd/obj_to_usd.xml"/>
-    <tool file="complex/vtp_to_obj/vtp_to_obj.xml"/>
-  </section>
-  <section id="testing" name="Testing">
-    <tool file="testing/process_plasma/process_plasma.xml" />
-    <tool file="testing/tbr_emulator/tbr_emulator.xml" />
-    <tool file="testing/build_cost_emulation/build_cost_emulation.xml" />
-    <tool file="testing/magnets_emulation/magnets_emulation.xml" />
-    <tool file="testing/power_emulation/power_emulation.xml" />
+  <section id="examples" name="Example Tools">
+    <tool file="examples/wc/word_count.xml" />
+    <tool file="examples/lc/letter_count.xml" />
   </section>
   <section id="collection_operations" name="Collection Operations">
     <tool file="${model_tools_path}/unzip_collection.xml" labels="new" />
