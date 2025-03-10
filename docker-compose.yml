@@ -1,8 +1,47 @@
+secrets:
+  GALAXY_STORAGE_PASSWORD:
+    file: ./galaxy/secrets/GALAXY_STORAGE_PASSWORD
+
 services:
+  galaxy:
+    image: galaxy/galaxy-min:24.2.2
+    restart: unless-stopped
+    group_add:
+      - ${DOCKER_GID}
+    depends_on:
+      galaxy-postgres:
+        condition: service_healthy
+    container_name: ${PROJECT_NAME}-galaxy
+    ports:
+      - 8080:8080
+    volumes:
+      # Persistant storage for Galaxy
+      - galaxy-store:/galaxy/server/
+      # Populate the instance
+      - ./galaxy/galaxy-init/bootstrap.py:/galaxy/server/bootstrap.py
+      - ./galaxy/galaxy-tools:/galaxy-tools
+      # Add custom configuration files
+      - ./galaxy/galaxy-config/tool_conf.xml:/galaxy/server/config/tool_conf.xml.sample
+      - ./galaxy/galaxy-config/job_conf.xml:/galaxy/server/config/job_conf.xml 
+      - ./galaxy/galaxy-config/galaxy.yml:/galaxy/server/config/galaxy.yml
+      - ./galaxy/galaxy-config/datatypes_conf.xml:/galaxy/server/config/datatypes_conf.xml
+      # Provide docker-in-docker
+      - /usr/bin/docker:/usr/bin/docker
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    post_start:
+      - command: sh -c "chown -R 101:101 /galaxy/server/tools/"
+        user: root
+      - command: sh -c "cp -r /galaxy-tools/* /galaxy/server/tools/"
+    networks:
+      - galaxy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+
   galaxy-bootstrap:
-    build:
-      context: galaxy-init
-      dockerfile: Dockerfile
+    image: galaxy/galaxy-min:24.1.3
     container_name: ${PROJECT_NAME}-galaxy-bootstrap
     environment:
       - GALAXY_URL=http://${PROJECT_NAME}-galaxy:8080
@@ -14,52 +53,13 @@ services:
       galaxy:
         condition: service_healthy
     volumes:
-      - ./galaxy-init/bootstrap.py:/bootstrap.py
+      - ./galaxy/galaxy-init/bootstrap.py:/bootstrap.py
       - ./galaxy/galaxy-workflows:/galaxy-workflows
     networks:
-      - randall
-
-  galaxy:
-    image: galaxy/galaxy-min:24.1.3
-    restart: unless-stopped
-    group_add:
-      - ${DOCKER_GID}
-    depends_on:
-      galaxy-postgres:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-    container_name: ${PROJECT_NAME}-galaxy
-    ports:
-      - 8080:8080
-    volumes:
-      - galaxy-store:/galaxy/server/
-      - ./galaxy/galaxy-tools:/galaxy-tools
-      - ./galaxy/galaxy-config/tool_conf.xml:/galaxy/server/config/tool_conf.xml.sample
-      - ./galaxy/galaxy-config/job_conf.xml:/galaxy/server/config/job_conf.xml 
-      - ./galaxy/galaxy-config/welcome.html:/galaxy/server/static/welcome.html
-      - ./galaxy/galaxy-config/galaxy.yml:/galaxy/server/config/galaxy.yml 
-      - ./galaxy/galaxy-config/mcfe_datatypes.py:/galaxy/server/lib/galaxy/datatypes/mcfe_datatypes.py
-      - ./galaxy/galaxy-config/datatypes_conf.xml:/galaxy/server/config/datatypes_conf.xml
-      - ./galaxy/galaxy-config/ro_crate_utils.py:/galaxy/server/lib/galaxy/model/store/ro_crate_utils.py
-      - /usr/bin/docker:/usr/bin/docker
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    post_start:
-      - command: sh -c "chown -R 101:101 /galaxy/server/tools/"
-        user: root
-      - command: sh -c "cp -r /galaxy-tools/* /galaxy/server/tools/"
-    networks:
-      - randall
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080"]
-      interval: 30s
-      timeout: 30s
-      retries: 5
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.galaxy.rule=Host(`galaxy.localhost`)"
-      - "traefik.http.routers.galaxy.entrypoints=web"
-
+      - galaxy
+    entrypoint: ["python"]
+    command: ["/bootstrap.py"]
+    
   galaxy-postgres:
     container_name: ${PROJECT_NAME}-galaxy-postgres
     image: postgres
@@ -72,9 +72,15 @@ services:
       POSTGRES_PASSWORD_FILE: /run/secrets/GALAXY_STORAGE_PASSWORD
       POSTGRES_DB: galaxy
     networks:
-      - randall
+      - galaxy
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U galaxy"]
       interval: 5s
       timeout: 5s
       retries: 5    
+
+networks:
+  galaxy:
+
+volumes:
+  galaxy-store:
