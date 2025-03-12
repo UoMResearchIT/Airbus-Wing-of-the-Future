@@ -7,7 +7,7 @@
   
   <command>
     <![CDATA[
-    python '$__tool_directory__/word_count.py' --input_str '$input_str' --output_file '$output_file'
+      echo "$input_str" | wc -w > '$output_file'
     ]]>
   </command>
 

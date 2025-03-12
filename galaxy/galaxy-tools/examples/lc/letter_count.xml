@@ -7,7 +7,7 @@
   
   <command>
     <![CDATA[
-      python '$__tool_directory__/letter_count.py' --input_str '$input_str' --output_file '$output_file'
+      python '$__tool_directory__/letter_count.py' '$input_str' '$output_file'
     ]]>
   </command>
 
