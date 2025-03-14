@@ -7,12 +7,12 @@
   
   <command>
     <![CDATA[
-      python '$__tool_directory__/letter_count.py' '$input_str' '$output_file'
+      python '$__tool_directory__/letter_count.py' '$input_file' '$output_file'
     ]]>
   </command>
 
   <inputs>
-    <param type="text" name="input_str" label="Input String" help="Enter the string to count the letters" />
+    <param type="data" name="input_file" label="Sentance File" help="Enter the string to count the letters" />
   </inputs>
 
   <outputs>
@@ -20,7 +20,7 @@
   </outputs>
   
   <help>
-    This tool counts the number of letter in each word of a string.
+    This tool counts the number of letter in each word of a file.
   </help>
 
 </tool>
