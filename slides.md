@@ -25,16 +25,6 @@ footer: RSE Show and Tell, March 2025
 
 ---
 
-# So formal!
-
-All of these points are true and valid
-
-But...
-
-I was missing the point a bit
-
----
-
 ## What is a workflow *for a user?
 
 Workflows are really about:
@@ -47,7 +37,6 @@ Workflows are really about:
 
 ![bg fit](./overall_workflow.png)
 
-
 ---
 
 ## So what changed?
@@ -59,18 +48,29 @@ I became familiar with Galaxy!
 --- 
 
 ## Why Galaxy changed my mind?
+<style scoped>
+section {
+    font-size: 30px;
+}
+</style>
 
-- Server based - users only need a browser!
-- All of the tool config / faff is pushed to sysadmins
-- Nice GUI, no code for users
-- Already widely adopted 
-- Sharing / reuse / remix architecture already exists
+⛔ Installing a framework / tool / docker / plugin
+✅ Just use your browser
+####
+⛔ Installing tools
+✅ Just use your browser
+####
+⛔ YAML / Python / text editor faffing
+✅ Just use (the GUI) in your browser
+####
+⛔ "Yeah you can use my workflow! Clone this repo, install this tool, configure this library, download this file"
+✅ "Just go to [your URL] in your browser"
 
---- 
+---
 
-## But my workflow engine is better?
+### "But my workflow engine is **better** 😤"
 
-Well, maybe. But you have to pick one.
+Well, maybe. But as a group we should pick one.
 
 List of 361 workflow engines:
 https://github.com/common-workflow-language/common-workflow-language/wiki/Existing-Workflow-systems
@@ -79,15 +79,16 @@ https://github.com/common-workflow-language/common-workflow-language/wiki/Existi
 
 ## Why Galaxy is good enough
 
-- No need to user to install any runtime
-- No need for user to install science tools
+- Administered by sysadmins not users
+- Browser interface is best for users
 - Can interfce with HPC
 - Has an API
-- Is actively mantained 
+- Actively developed
+- Widely adopted
 
 ---
 
-# **Can I prove it?**
+# **Can I prove Galaxy is good enough?**
 
 ### I think so! 
 Let's look at a worked example
@@ -113,18 +114,64 @@ Let's look at a worked example
 
 --- 
 
-What did we see?
+# What did we see?
 
-Researchers doing research! Without any setup
-Using tools, making workflows, sharing output
+- Researchers doing research! 
+- Without any setup
+- Using tools, making workflows, sharing output
 
 ---
 
-How would this look for an RSE?
+## Galaxy's big questions (and my solutions)
+<style scoped>
+section {
+    font-size: 28px;
+}
+</style>
 
-Galaxy can be hosted locally (clone this repo for a demo)
-Develop some new tools
-Push them to a central instance?
+### **Doesn't Galaxy needs a server to set up and maintained?**
+
+### **Doesn't Galaxy make it hard to do local development?**
+
+I thought this for a long time but now have an answer!
+
+Clone this repo for an example **self hosted Galaxy using Docker**
+
+### **Wont the Galaxy server die at the end of my project?**
+
+Well...
+
+---
+
+## My suggestion
+
+We trail a persistant, central Galaxy instance for RSEs
+
+We put a workstationx *under a desk*
+
+RSEs doing workflow projects see if Galaxy fits their needs and contribute tools
+
+---
+
+## The future
+
+If the instance too popular and a workstation can't cope:
+- Good problem to have!
+- Can investigate backing on to HPC / cloud
+
+If it is not:
+- Nice workstation for someone
+
+---
+
+## Conclusions
+
+- Workflows should be about:
+  - user experiences
+  - enabling research
+- Galaxy is good enough 
+
+## We should (gently) start to host our own Galaxy
 
 ---
 
@@ -158,53 +205,3 @@ Let's have a look at a tool
 
 </tool>
 ```
-
----
-
-## What happens when my project ends?
-
----
-
-## What happens when my project ends?
-
-![bg fit grayscale opacity:0.4](./graveyard.jpg)
-
-In my experience, all workflow projects die at the end of the project (sooner or later).
-
-- Personally: a trail of dead Galaxies, some CWL memorial stones
-- Others: unused workflow files, decaying tooling
-
----
-
-## My suggestion
-
-We begin to trail a persistant, central Galaxy instance for RSEs.
-
-We get a workstation scale system and put it under a desk.
-
-RSEs doing workflow projects see if Galaxy fits their needs, contribute tools and workflow.
-
-
----
-
-## My suggestion
-
-![bg fit](./nirvana.png)
-
-We begin to trail a persistant, central Galaxy instance for RSEs.
-
-We get a workstation scale system and put it under a desk.
-
-RSEs doing workflow projects see if Galaxy fits their needs, contribute tools and workflow.
-
---- 
-
-## The future
-
-If the instance is popular and meets a need:
-- Good problem to have
-
-If it is not:
-- Nice workstation for someone
-
-Any questions?
