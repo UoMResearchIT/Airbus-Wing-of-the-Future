@@ -18,13 +18,13 @@ services:
       # Persistant storage for Galaxy
       - galaxy-store:/galaxy/server/
       # Populate the instance
-      - ./galaxy/galaxy-init/bootstrap.py:/galaxy/server/bootstrap.py
-      - ./galaxy/galaxy-tools:/galaxy-tools
+      - ./galaxy/init/bootstrap.py:/galaxy/server/bootstrap.py
+      - ./galaxy/tools:/galaxy-tools
       # Add custom configuration files
-      - ./galaxy/galaxy-config/tool_conf.xml:/galaxy/server/config/tool_conf.xml.sample
-      - ./galaxy/galaxy-config/job_conf.xml:/galaxy/server/config/job_conf.xml 
-      - ./galaxy/galaxy-config/galaxy.yml:/galaxy/server/config/galaxy.yml
-      - ./galaxy/galaxy-config/datatypes_conf.xml:/galaxy/server/config/datatypes_conf.xml
+      - ./galaxy/config/tool_conf.xml:/galaxy/server/config/tool_conf.xml.sample
+      - ./galaxy/config/job_conf.xml:/galaxy/server/config/job_conf.xml 
+      - ./galaxy/config/galaxy.yml:/galaxy/server/config/galaxy.yml
+      - ./galaxy/config/datatypes_conf.xml:/galaxy/server/config/datatypes_conf.xml
       # Provide docker-in-docker
       - /usr/bin/docker:/usr/bin/docker
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -53,8 +53,8 @@ services:
       galaxy:
         condition: service_healthy
     volumes:
-      - ./galaxy/galaxy-init/bootstrap.py:/bootstrap.py
-      - ./galaxy/galaxy-workflows:/galaxy-workflows
+      - ./galaxy/init/bootstrap.py:/bootstrap.py
+      - ./galaxy/workflows:/galaxy-workflows
     networks:
       - galaxy
     entrypoint: ["python"]
