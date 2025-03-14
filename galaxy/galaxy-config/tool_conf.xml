@@ -9,6 +9,7 @@
   <section id="examples" name="Example Tools">
     <tool file="examples/wc/word_count.xml" />
     <tool file="examples/lc/letter_count.xml" />
+    <tool file="examples/hist/hist.xml" />
   </section>
   <section id="collection_operations" name="Collection Operations">
     <tool file="${model_tools_path}/unzip_collection.xml" labels="new" />
