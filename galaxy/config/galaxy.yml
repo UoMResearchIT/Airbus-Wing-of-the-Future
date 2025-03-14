@@ -23,6 +23,7 @@ galaxy:
   cleanup_job: never
   data_dir: /galaxy/server/database
   enable_celery_tasks: true
+  expose_dataset_path: true
 
   # File paths
   builds_file_path: /galaxy/server/tool-data/shared/ucsc/builds.txt.sample
