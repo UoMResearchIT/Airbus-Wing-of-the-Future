@@ -8,11 +8,13 @@ parser.add_argument('output_file', help='The name of the file to write the outpu
 args = parser.parse_args()
 
 # List comprehension to get the length of each word in the string
-word_lengths = [str(len(word)) for word in args.input_str.split()]
+words = args.input_str.split()
+word_lengths = [str(len(word)) for word in words]
 
 # Print the word lengths to the console
 print(f"Word lengths: {', '.join(word_lengths)}")
 
-# Write the word lengths to the output file
+# Write the word lengths to the output file 
 with open(args.output_file, 'w') as f:
-    f.write(','.join(word_lengths))
+    f.write('\n'.join(word_lengths))
+

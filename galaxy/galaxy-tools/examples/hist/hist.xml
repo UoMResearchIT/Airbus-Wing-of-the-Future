@@ -1,0 +1,29 @@
+<tool id="histogram" name="Histogram" version="0.1.0">
+  <description>Generates a histogram of the letter count in a file</description>
+  
+  <requirements>
+    <container type="docker">ghcr.io/oliverwoolland/numpy:latest</container>
+  </requirements>
+ 
+  <command>
+    <![CDATA[
+      mkdir ./matplotlib &&
+      export MPLCONFIGDIR=./matplotlib && 
+      python '$__tool_directory__/hist.py' '$input_file' image.png &&
+      cp image.png $output_image
+    ]]>
+  </command>
+
+  <inputs>
+    <param type="data" name="input_file" label="Input File" help="Input file containing the numerical data" />
+  </inputs>
+
+  <outputs>
+    <data format="png" name="output_image" label="Histogram" help="Image of histogram of the letter count in the input file" />
+  </outputs>
+  
+  <help>
+    This tool generates a histogram of the letter count in a file. The input file should contain the numerical data (csv).
+  </help>
+
+</tool>
