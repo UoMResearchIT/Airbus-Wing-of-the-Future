@@ -7,12 +7,27 @@
   
   <command>
     <![CDATA[
-      echo "$input_str" | wc -w > '$output_file'
+        #if $input.select_type == "text"
+            echo "$input_str" | wc -w > '$output_file'
+        #else
+            cat '$input_file' | wc -w > '$output_file'
+        #end if
     ]]>
   </command>
 
   <inputs>
-    <param type="text" name="input_str" label="Input String" help="Enter the string to count the words" />
+    <conditional name="input">
+        <param name="select_type" type="select" label="Input Type">
+            <option value="text">Enter text</option>
+            <option value="file">Input file</option>
+        </param>
+        <when value="text">
+            <param type="text" name="input_str" label="Input String" help="Enter a string to count the words" />
+        </when>
+        <when value="file">
+            <param type="data" name="input_file" label="Input File" help="Upload a file to count the words" />
+        </when>
+    </conditional>
   </inputs>
 
   <outputs>
