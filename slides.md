@@ -37,19 +37,16 @@ I was missing the point a bit
 
 ## What is a workflow *for a user?
 
----
-
-![bg fit](./overall_workflow.png)
-
----
-
-## What is a workflow *for a user?
-
 Workflows are really about:
 - **Enabling research** not installing tools 
 - **Doing research** not manually running tools
 - **Accelerating research** using HPC / cloud
 - **Sharing research** not just reports and papers
+
+---
+
+![bg fit](./overall_workflow.png)
+
 
 ---
 
@@ -99,10 +96,10 @@ Let's look at a worked example
 
 # Introducing: some linguists
 
-- **Abby** (Masters student) saw a tool online
-- **Barry** (PhD student) knows a tool from the literature
-- **Caz** (Postdoc) too busy but has big ideas
-- **Daren** (PI) wants research to occur, to show off
+- **Alice** (Masters student) saw a tool online
+- **Bob** (PhD student) knows a tool from the literature
+- **Charlie** (Postdoc) too busy but has big ideas
+- **Dani** (PI) wants research to occur, to show off
 - **Me** (pretending to be a sysadmin)
 
 #### Their research aim: 
@@ -170,7 +167,7 @@ Let's have a look at a tool
 
 ## What happens when my project ends?
 
-![bg fit](./graves.png)
+![bg fit grayscale opacity:0.4](./graveyard.jpg)
 
 In my experience, all workflow projects die at the end of the project (sooner or later).
 
