@@ -35,10 +35,6 @@ Workflows are really about:
 
 ---
 
-![bg fit](./overall_workflow.png)
-
----
-
 ## So what changed?
 
 I became familiar with Galaxy!
@@ -147,35 +143,23 @@ Well...
 
 We trail a persistant, central Galaxy instance for RSEs
 
-We put a workstationx *under a desk*
-
-RSEs doing workflow projects see if Galaxy fits their needs and contribute tools
+We put a workstation *under a desk*
 
 ---
 
-## The future
+## How would this look for RSEs?
 
-If the instance too popular and a workstation can't cope:
-- Good problem to have!
-- Can investigate backing on to HPC / cloud
+I would maintain the instance in my personal development time
 
-If it is not:
-- Nice workstation for someone
+RSEs can use the demo docker compose and create tools
 
----
+RSEs can compose workflows to share with academics
 
-## Conclusions
+No need to nesseceraly learn a new workflow tool, onboarded by fellow RSEs
 
-- Workflows should be about:
-  - user experiences
-  - enabling research
-- Galaxy is good enough 
-
-## We should (gently) start to host our own Galaxy
+As well all contribute tools the instance gets stronger, we do less new work
 
 ---
-
-Let's have a look at a tool
 
 ```xml
 <tool id="letter_count" name="Letter Count" version="0.1.0">
@@ -187,12 +171,12 @@ Let's have a look at a tool
   
   <command>
     <![CDATA[
-      python '$__tool_directory__/letter_count.py' '$input_str' '$output_file'
+      python '$__tool_directory__/letter_count.py' '$input_file' '$output_file'
     ]]>
   </command>
 
   <inputs>
-    <param type="text" name="input_str" label="Input String" help="Enter the string to count the letters" />
+    <param type="data" name="input_file" label="Sentance File" help="Enter the string to count the letters" />
   </inputs>
 
   <outputs>
@@ -205,3 +189,34 @@ Let's have a look at a tool
 
 </tool>
 ```
+
+---
+
+![bg fit](./overall_workflow.png)
+
+---
+
+## The future
+
+If the instance too popular and a workstation can't cope:
+- Good problem to have!
+- Can investigate backing on to HPC / cloud
+
+If it is not:
+- Nice workstation for someone
+
+If we don't step up and instance:
+- Galaxy is still a good choice for projects!
+- The Docker solution makes it easy to get set up and working
+- I am happy help anyone that is interested
+
+---
+
+## Conclusions
+
+- Workflows should be about:
+  - user experiences
+  - enabling research
+- Galaxy is good enough 
+
+## We should (gently) start to host our own Galaxy
