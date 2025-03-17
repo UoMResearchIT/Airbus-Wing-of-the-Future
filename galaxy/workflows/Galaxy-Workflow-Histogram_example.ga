@@ -2,20 +2,33 @@
     "a_galaxy_workflow": "true",
     "annotation": "This workflow takes an input file containing a sentence on a single line.\n\ne.g. \"The quick brown fox jumps over the lazy dog\" ",
     "comments": [],
+    "creator": [
+        {
+            "class": "Person",
+            "identifier": "https://orcid.org/ 0000-0002-4565-9760",
+            "name": "Oliver Woolland"
+        }
+    ],
     "format-version": "0.1",
+    "license": "MIT",
     "name": "Histogram example",
     "report": {
         "markdown": "\n# Workflow Execution Report\n\n## Workflow Inputs\n```galaxy\ninvocation_inputs()\n```\n\n## Workflow Outputs\n```galaxy\ninvocation_outputs()\n```\n\n## Workflow\n```galaxy\nworkflow_display()\n```\n"
     },
     "steps": {
         "0": {
-            "annotation": "",
+            "annotation": "A file which containers a sentence on  a single line.\n\ne.g. \"The quick brown fox jumps over the lazy dog\"",
             "content_id": null,
             "errors": null,
             "id": 0,
             "input_connections": {},
-            "inputs": [],
-            "label": null,
+            "inputs": [
+                {
+                    "description": "A file which containers a sentence on  a single line.\n\ne.g. \"The quick brown fox jumps over the lazy dog\"",
+                    "name": "Input sentence"
+                }
+            ],
+            "label": "Input sentence",
             "name": "Input dataset",
             "outputs": [],
             "position": {
@@ -148,7 +161,9 @@
             "workflow_outputs": []
         }
     },
-    "tags": [],
-    "uuid": "b3e6f7d8-9296-4874-b531-08d891858fb6",
-    "version": 3
+    "tags": [
+        "example"
+    ],
+    "uuid": "a547189f-e739-4f1d-a3cb-4faacbc2b2fe",
+    "version": 5
 }
