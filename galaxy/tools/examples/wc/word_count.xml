@@ -31,7 +31,7 @@
   </inputs>
 
   <outputs>
-    <data format="txt" name="output_file" label="Word Count" help="Output file containing the word count" />
+    <data format="data" name="output_file" label="Word Count" help="Output file containing the word count" />
   </outputs>
   
   <help>

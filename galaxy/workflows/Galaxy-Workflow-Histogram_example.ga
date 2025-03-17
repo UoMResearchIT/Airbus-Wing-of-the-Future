@@ -1,0 +1,154 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "This workflow takes an input file containing a sentence on a single line.\n\ne.g. \"The quick brown fox jumps over the lazy dog\" ",
+    "comments": [],
+    "format-version": "0.1",
+    "name": "Histogram example",
+    "report": {
+        "markdown": "\n# Workflow Execution Report\n\n## Workflow Inputs\n```galaxy\ninvocation_inputs()\n```\n\n## Workflow Outputs\n```galaxy\ninvocation_outputs()\n```\n\n## Workflow\n```galaxy\nworkflow_display()\n```\n"
+    },
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [],
+            "label": null,
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 0,
+                "top": 0
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false, \"tag\": null}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "c068d3d8-9a30-4a51-80b6-8c7828decc4d",
+            "when": null,
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "letter_count",
+            "errors": null,
+            "id": 1,
+            "input_connections": {
+                "input_file": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Letter Count",
+            "outputs": [
+                {
+                    "name": "output_file",
+                    "type": "csv"
+                }
+            ],
+            "position": {
+                "left": 300,
+                "top": 0
+            },
+            "post_job_actions": {},
+            "tool_id": "letter_count",
+            "tool_state": "{\"input_file\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "47608431-3dc5-40ca-9809-a80bd93c83f8",
+            "when": null,
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "word_count",
+            "errors": null,
+            "id": 2,
+            "input_connections": {
+                "input|input_file": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Word Count",
+                    "name": "input"
+                }
+            ],
+            "label": null,
+            "name": "Word Count",
+            "outputs": [
+                {
+                    "name": "output_file",
+                    "type": "data"
+                }
+            ],
+            "position": {
+                "left": 300,
+                "top": 150
+            },
+            "post_job_actions": {},
+            "tool_id": "word_count",
+            "tool_state": "{\"input\": {\"select_type\": \"file\", \"__current_case__\": 1, \"input_file\": {\"__class__\": \"ConnectedValue\"}}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "1663f53d-c8a7-49ce-a63e-a993963d2ba3",
+            "when": null,
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "histogram",
+            "errors": null,
+            "id": 3,
+            "input_connections": {
+                "normalise|factor": {
+                    "id": 2,
+                    "output_name": "output_file"
+                },
+                "normalise|input_file": {
+                    "id": 1,
+                    "output_name": "output_file"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Histogram",
+                    "name": "normalise"
+                },
+                {
+                    "description": "runtime parameter for tool Histogram",
+                    "name": "normalise"
+                }
+            ],
+            "label": null,
+            "name": "Histogram",
+            "outputs": [
+                {
+                    "name": "output_image",
+                    "type": "png"
+                }
+            ],
+            "position": {
+                "left": 600,
+                "top": 0
+            },
+            "post_job_actions": {},
+            "tool_id": "histogram",
+            "tool_state": "{\"normalise\": {\"select_type\": \"true\", \"__current_case__\": 1, \"input_file\": {\"__class__\": \"ConnectedValue\"}, \"factor\": {\"__class__\": \"ConnectedValue\"}}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "c0c8be9c-3add-4d3b-9842-9d16ffa1bd01",
+            "when": null,
+            "workflow_outputs": []
+        }
+    },
+    "tags": [],
+    "uuid": "b3e6f7d8-9296-4874-b531-08d891858fb6",
+    "version": 3
+}

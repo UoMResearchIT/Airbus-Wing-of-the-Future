@@ -8,14 +8,30 @@
   <command>
     <![CDATA[
       mkdir ./matplotlib &&
-      export MPLCONFIGDIR=./matplotlib && 
-      python '$__tool_directory__/hist.py' '$input_file' image.png &&
+      export MPLCONFIGDIR=./matplotlib &&
+      #if $select_type == "false"
+        python '$__tool_directory__/hist.py' '$input_file' image.png &&
+      #else
+        python '$__tool_directory__/hist.py' '$input_file' image.png '$factor' &&
+      #end if
       cp image.png $output_image
     ]]>
   </command>
 
   <inputs>
-    <param type="data" name="input_file" label="Input File" help="Input file containing the numerical data" />
+    <conditional name="normalise">
+      <param name="select_type" type="select" label="Normalise" help="Normalise the histogram?">
+        <option value="false">No</option>
+        <option value="true">Yes</option>
+      </param>
+      <when value="false">
+        <param type="data" name="input_file" label="Input File" help="Input file containing the numerical data" />
+      </when>
+      <when value="true">
+        <param type="data" name="input_file" label="Input File" help="Input file containing the numerical data" />
+        <param type="data" name="factor" label="Normalisation factor" help="File containing the noramalisation factor" />
+      </when>
+    </conditional>
   </inputs>
 
   <outputs>
