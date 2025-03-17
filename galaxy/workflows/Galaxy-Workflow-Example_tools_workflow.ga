@@ -70,7 +70,7 @@
     ],
     "format-version": "0.1",
     "license": "MIT",
-    "name": "Histogram example",
+    "name": "Example tools workflow",
     "report": {
         "markdown": "\n# Workflow Execution Report\n\n## Workflow Inputs\n```galaxy\ninvocation_inputs()\n```\n\n## Workflow Outputs\n```galaxy\ninvocation_outputs()\n```\n\n## Workflow\n```galaxy\nworkflow_display()\n```\n"
     },
@@ -98,7 +98,7 @@
             "tool_state": "{\"optional\": false, \"tag\": null}",
             "tool_version": null,
             "type": "data_input",
-            "uuid": "c068d3d8-9a30-4a51-80b6-8c7828decc4d",
+            "uuid": "bfa2df37-a1e3-43cc-8b47-f7f17097198e",
             "when": null,
             "workflow_outputs": []
         },
@@ -131,7 +131,7 @@
             "tool_state": "{\"input_file\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
             "tool_version": "0.1.0",
             "type": "tool",
-            "uuid": "47608431-3dc5-40ca-9809-a80bd93c83f8",
+            "uuid": "05cd7d35-398a-4000-8258-c127ab037374",
             "when": null,
             "workflow_outputs": []
         },
@@ -169,7 +169,7 @@
             "tool_state": "{\"input\": {\"select_type\": \"file\", \"__current_case__\": 1, \"input_file\": {\"__class__\": \"ConnectedValue\"}}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
             "tool_version": "0.1.0",
             "type": "tool",
-            "uuid": "1663f53d-c8a7-49ce-a63e-a993963d2ba3",
+            "uuid": "943923de-5856-4714-a4d3-aa041e2edfa4",
             "when": null,
             "workflow_outputs": []
         },
@@ -215,7 +215,7 @@
             "tool_state": "{\"normalise\": {\"select_type\": \"true\", \"__current_case__\": 1, \"input_file\": {\"__class__\": \"ConnectedValue\"}, \"factor\": {\"__class__\": \"ConnectedValue\"}}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
             "tool_version": "0.1.0",
             "type": "tool",
-            "uuid": "c0c8be9c-3add-4d3b-9842-9d16ffa1bd01",
+            "uuid": "ce686404-e067-4d7f-917c-5b64f8db1799",
             "when": null,
             "workflow_outputs": []
         }
@@ -223,6 +223,6 @@
     "tags": [
         "example"
     ],
-    "uuid": "7aedf365-708f-4fc7-a3c9-20661d97f672",
-    "version": 1
+    "uuid": "54ea3809-388a-4aa8-b272-6a0e17f96a56",
+    "version": 0
 }
