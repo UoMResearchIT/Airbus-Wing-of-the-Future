@@ -28,7 +28,7 @@ footer: RSE Show and Tell, March 2025
 ## What is a workflow *for a user?
 
 Workflows are really about:
-- **Enabling research** not installing tools 
+- **Enabling research** not setting up computers 
 - **Doing research** not manually running tools
 - **Accelerating research** using HPC / cloud
 - **Sharing research** not just reports and papers
@@ -81,6 +81,7 @@ https://github.com/common-workflow-language/common-workflow-language/wiki/Existi
 - Has an API
 - Actively developed
 - Widely adopted
+- Extensive training materials
 
 ---
 
@@ -89,17 +90,7 @@ https://github.com/common-workflow-language/common-workflow-language/wiki/Existi
 ### I think so! 
 Let's look at a worked example
 
----
-
-# Introducing: some linguists
-
-- **Alice** (Masters student) saw a tool online
-- **Bob** (PhD student) knows a tool from the literature
-- **Charlie** (Postdoc) too busy but has big ideas
-- **Dani** (PI) wants research to occur, to show off
-- **Me** (pretending to be a sysadmin)
-
-#### Their research aim: 
+#### The research aim: 
 **To mine data from a database of phrases**
 
 ---
@@ -118,48 +109,29 @@ Let's look at a worked example
 
 ---
 
-## Galaxy's big questions (and my solutions)
-<style scoped>
-section {
-    font-size: 28px;
-}
-</style>
+## How would this look for RSEs?
 
-### **Doesn't Galaxy needs a server to set up and maintained?**
+- No more unguided learning of workflow engines
+- We can form a community 
+- We can pool config, tools, visualisations, workflows
 
-### **Doesn't Galaxy make it hard to do local development?**
+#### We do less work
+
+But... how do we start?
+
+---
+
+##### **Doesn't Galaxy needs a server to set up and maintained?**
+
+##### **Doesn't Galaxy make it hard to do local development?**
 
 I thought this for a long time but now have an answer!
 
 Clone this repo for an example **self hosted Galaxy using Docker**
 
-### **Wont the Galaxy server die at the end of my project?**
-
-Well...
-
 ---
 
-## My suggestion
-
-We trail a persistant, central Galaxy instance for RSEs
-
-We put a workstation *under a desk*
-
----
-
-## How would this look for RSEs?
-
-I would maintain the instance in my personal development time
-
-RSEs can use the demo docker compose and create tools
-
-RSEs can compose workflows to share with academics
-
-No need to nesseceraly learn a new workflow tool, onboarded by fellow RSEs
-
-As well all contribute tools the instance gets stronger, we do less new work
-
----
+### Example tool
 
 ```xml
 <tool id="letter_count" name="Letter Count" version="0.1.0">
@@ -196,6 +168,22 @@ As well all contribute tools the instance gets stronger, we do less new work
 
 ---
 
+## Galaxy's big question 
+
+### **Wont the Galaxy server die at the end of my project?**
+
+Well...
+
+---
+
+## My suggestion(s)
+
+We trail a persistant, central Galaxy instance for RSEs
+
+We put a workstation *under a desk*
+
+--- 
+
 ## The future
 
 If the instance too popular and a workstation can't cope:
@@ -217,6 +205,7 @@ If we don't step up and instance:
 - Workflows should be about:
   - user experiences
   - enabling research
-- Galaxy is good enough 
+- We can save ourselves pain by standardising
+- [Opening Up Reserach](https://www.manchester.ac.uk/about/news/opening-up-research-202425/)
 
 ## We should (gently) start to host our own Galaxy
