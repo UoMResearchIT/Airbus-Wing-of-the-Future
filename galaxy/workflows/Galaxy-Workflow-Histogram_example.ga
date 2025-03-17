@@ -1,7 +1,66 @@
 {
     "a_galaxy_workflow": "true",
     "annotation": "This workflow takes an input file containing a sentence on a single line.\n\ne.g. \"The quick brown fox jumps over the lazy dog\" ",
-    "comments": [],
+    "comments": [
+        {
+            "child_steps": [
+                0
+            ],
+            "color": "lime",
+            "data": {
+                "title": "Input"
+            },
+            "id": 0,
+            "position": [
+                0,
+                120
+            ],
+            "size": [
+                260,
+                140
+            ],
+            "type": "frame"
+        },
+        {
+            "child_steps": [
+                1,
+                2
+            ],
+            "color": "yellow",
+            "data": {
+                "title": "Processing"
+            },
+            "id": 1,
+            "position": [
+                370,
+                0
+            ],
+            "size": [
+                260,
+                280
+            ],
+            "type": "frame"
+        },
+        {
+            "child_steps": [
+                3
+            ],
+            "color": "red",
+            "data": {
+                "title": "Output"
+            },
+            "id": 2,
+            "position": [
+                740,
+                100
+            ],
+            "size": [
+                250,
+                200
+            ],
+            "type": "frame"
+        }
+    ],
     "creator": [
         {
             "class": "Person",
@@ -32,8 +91,8 @@
             "name": "Input dataset",
             "outputs": [],
             "position": {
-                "left": 0,
-                "top": 0
+                "left": 20,
+                "top": 160
             },
             "tool_id": null,
             "tool_state": "{\"optional\": false, \"tag\": null}",
@@ -64,8 +123,8 @@
                 }
             ],
             "position": {
-                "left": 300,
-                "top": 0
+                "left": 390,
+                "top": 40
             },
             "post_job_actions": {},
             "tool_id": "letter_count",
@@ -102,8 +161,8 @@
                 }
             ],
             "position": {
-                "left": 300,
-                "top": 150
+                "left": 390,
+                "top": 160
             },
             "post_job_actions": {},
             "tool_id": "word_count",
@@ -148,8 +207,8 @@
                 }
             ],
             "position": {
-                "left": 600,
-                "top": 0
+                "left": 760,
+                "top": 140
             },
             "post_job_actions": {},
             "tool_id": "histogram",
@@ -164,6 +223,6 @@
     "tags": [
         "example"
     ],
-    "uuid": "a547189f-e739-4f1d-a3cb-4faacbc2b2fe",
-    "version": 5
+    "uuid": "7aedf365-708f-4fc7-a3c9-20661d97f672",
+    "version": 1
 }

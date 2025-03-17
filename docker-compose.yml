@@ -3,6 +3,17 @@ secrets:
     file: ./galaxy/secrets/GALAXY_STORAGE_PASSWORD
 
 services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: ${PROJECT_NAME}-cloudflared
+    restart: unless-stopped
+    environment:
+      - TUNNEL_TOKEN=eyJhIjoiZTk3ZjM1OGM3NTc5ZjdkYjJlNDVmNTI2OTE1MzgxMzYiLCJ0IjoiYTRmNzI2MjgtYmRlYy00M2M4LWIwOWQtOTU2YWE1N2U2ODU5IiwicyI6IlltWTRabVV5WWpZdE56TmxPUzAwWVdRMUxUazJPVFV0WldOaVpHRTJOR0U1TkdRMyJ9
+    command:
+      tunnel --no-autoupdate run
+    networks:
+      - galaxy
+
   galaxy:
     image: galaxy/galaxy-min:24.2.2
     restart: unless-stopped
