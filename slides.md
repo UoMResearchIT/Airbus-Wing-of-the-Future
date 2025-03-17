@@ -186,16 +186,12 @@ We put a workstation *under a desk*
 
 ## The future
 
-If the instance too popular and a workstation can't cope:
-- Good problem to have!
-- Can investigate backing on to HPC / cloud
+**If the instance too popular**: Good problem to have!
+**If not**: nice workstation for someone
 
-If it is not:
-- Nice workstation for someone
-
-If we don't step up and instance:
+Even if we don't start an instance:
 - Galaxy is still a good choice for projects!
-- The Docker solution makes it easy to get set up and working
+- The Docker solution makes it easy try out
 - I am happy help anyone that is interested
 
 ---
@@ -206,6 +202,6 @@ If we don't step up and instance:
   - user experiences
   - enabling research
 - We can save ourselves pain by standardising
-- [Opening Up Reserach](https://www.manchester.ac.uk/about/news/opening-up-research-202425/)
+- Galaxy is good enough
 
-## We should (gently) start to host our own Galaxy
+[Opening Up Research](https://www.manchester.ac.uk/about/news/opening-up-research-202425/)
