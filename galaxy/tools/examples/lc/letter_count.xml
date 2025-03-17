@@ -12,7 +12,7 @@
   </command>
 
   <inputs>
-    <param type="data" name="input_file" label="Sentance File" help="Enter the string to count the letters" />
+    <param type="data" name="input_file" label="Input File" help="Enter the file (containing a sentence) to count the letters" />
   </inputs>
 
   <outputs>
