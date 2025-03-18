@@ -20,7 +20,7 @@ The best introductions to Galaxy are given by the Galaxy project itself. You may
 
 If you are an RSE looking to develop tooling for Galaxy then generic documentation can be found at: [Developing Galaxy Tools](https://training.galaxyproject.org/training-material/topics/dev/#st-tooldev)
 
-You could also explore the Galaxy training material for coaching Galaxy administrators, however, this is not necessary to get started and the techniques may not necessarily apply to a self-hosted instance (Galaxy assumed deployment through Ansible, we use Docker Compose).
+You could also explore the Galaxy training material for coaching Galaxy administrators, however, this is not necessary to get started and the techniques may not necessarily apply to a self-hosted instance (the Galaxy Training Network assume deployment through Ansible, we use Docker Compose).
 https://training.galaxyproject.org/training-material/topics/admin/
 
 ## Reference material
