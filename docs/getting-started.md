@@ -23,7 +23,7 @@ git clone git@github.com:UoMResearchIT/Galaxy-Show-And-Tell.git
 cd Galaxy-Show-And-Tell
 ```
 > [!WARNING] 
-> Due to a bug, if you use a directory name **other than** `Galaxy-Show-And-Tell` you will need to edit `galaxy/config/job_conf.xml` to reflect this. Use `docker volume ls` to obtain your volume name and edit `<param id="docker_volumes">{{galaxy-show-and-tell}}_galaxy-store:/galaxy/server</param>` to the correct name
+> [Due to a bug](https://github.com/UoMResearchIT/Galaxy-Show-And-Tell/issues/1), if you use a directory name **other than** `Galaxy-Show-And-Tell` you will need to edit `galaxy/config/job_conf.xml` to reflect this. Use `docker volume ls` to obtain your volume name and edit `<param id="docker_volumes">{{galaxy-show-and-tell}}_galaxy-store:/galaxy/server</param>` to the correct name
 
 
 You must now configure the `.env` file to give some essential information to the Galaxy instance. You can do this by copying the `env.template` file to `.env` and editing the `.env` file:
