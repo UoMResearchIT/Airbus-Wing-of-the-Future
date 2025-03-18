@@ -178,7 +178,7 @@ Well...
 
 ---
 
-## My suggestion(s)
+## My suggestion
 
 We trail a persistant, central Galaxy instance for RSEs
 
@@ -188,13 +188,10 @@ We put a workstation *under a desk*
 
 ## The future
 
-**If the instance too popular**: Good problem to have!
-**If not**: nice workstation for someone
-
 Even if we don't start an instance:
 - Galaxy is still a good choice for projects!
 - The Docker solution makes it easy try out
-- I am happy help anyone that is interested
+- I am happy to help anyone that is interested
 
 ---
 
@@ -206,4 +203,4 @@ Even if we don't start an instance:
 - We can save ourselves pain by standardising
 - Galaxy is good enough
 
-[Opening Up Research](https://www.manchester.ac.uk/about/news/opening-up-research-202425/)
+**Gutenberg moment?** [Opening Up Research](https://www.manchester.ac.uk/about/news/opening-up-research-202425/)
