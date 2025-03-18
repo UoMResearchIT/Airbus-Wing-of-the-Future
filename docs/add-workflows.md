@@ -20,4 +20,6 @@ Once you have created the workflow, you can save it to file. To do this, navigat
 
 ## Add the workflow to the `galaxy/workflows` directory
 
-For the workflow to be available in the Galaxy instance as a public workflow, you will need to add the `.ga` file to the `galaxy/workflows` directory. You will have to restart the Docker Compose for the workflow to be available.
+For the workflow to be available in the Galaxy instance as a public workflow, you will need to add the `.ga` file to the `galaxy/workflows` directory. 
+
+You will have to restart the Docker Compose for the workflow to be available.
