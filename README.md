@@ -11,6 +11,7 @@ Some guides are given below to help you get started!
 ## How to guides
 
 [How to: Add tools to your Galaxy](docs/add-tools.md)
+
 [How to: Add public workflows your Galaxy](docs/add-workflows.md)
 
 ## Useful resources 
