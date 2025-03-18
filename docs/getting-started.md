@@ -12,7 +12,7 @@ This guide will get you up and running with a self hosted Galaxy instance. The g
 
 To run Galaxy you will need to have Docker and Docker Compose installed on your machine. If you do not have these installed, you can find instructions on how to install them [here](https://docs.docker.com/get-docker/).
 
-This guide assumes the use of a Linux (virtual) machine. If you are using a different operating system, you may need to adjust the commands accordingly. WSL2 is a good option for running Linux commands on Windows machines.
+This guide assumes the use of a Linux environment. If you are using a different operating system, you may need to adjust the commands accordingly. WSL2 is a good option for running this stack on Windows machines.
 
 ### Starting Galaxy
 
@@ -26,7 +26,7 @@ cd Galaxy-Show-And-Tell
 You must now configure the `.env` file to give some essential information to the Galaxy instance. You can do this by copying the `env.template` file to `.env` and editing the `.env` file:
 
 > [!WARNING] 
-> Please ensure there is a leading '.' before the 'env' file. This is important for the `.env` file to be read by Docker Compose.
+> Please ensure there is a leading `.` before the `env` file. This is important for the `.env` file to be read by Docker Compose.
 
 ```bash
 cp env.template .env
