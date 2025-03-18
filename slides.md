@@ -68,8 +68,10 @@ section {
 
 Well, maybe. But as a group we should pick one.
 
-List of 361 workflow engines:
+List of <s>361</s> 362 workflow engines:
 https://github.com/common-workflow-language/common-workflow-language/wiki/Existing-Workflow-systems
+List of 260 workflow engines:
+https://github.com/pditommaso/awesome-pipeline
 
 ---
 
