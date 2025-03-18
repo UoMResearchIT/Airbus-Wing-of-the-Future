@@ -4,6 +4,8 @@ This repository serves as an example for RSEs to self host Galaxy. The repositor
 
 Some guides are given below to help you get started!
 
+If you are interested in some context for this repo some slides [are available](https://uomresearchit.github.io/Galaxy-Show-And-Tell/).
+
 ## Tutorials
 
 [Tutorial: From bootstrap to workflows! Getting started with Galaxy](docs/getting-started.md)
