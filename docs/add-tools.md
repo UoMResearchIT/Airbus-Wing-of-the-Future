@@ -57,12 +57,16 @@ Here is an example `tool.xml` file (the `letter_count` tool):
 
 Let's break this down.
 
+---
+
 ```xml
 <tool id="letter_count" name="Letter Count" version="0.1.0">
   <description>Counting letters in a string</description>
 ```
 
 These sections provide metadata for the tool and helpful information for the user. The tool id must be unique and is used to reference the tool in the `tool_conf.xml` file.
+
+---
 
 ```xml
   <requirements>
@@ -71,6 +75,8 @@ These sections provide metadata for the tool and helpful information for the use
 ```
 
 This section is optional but very common, it specifies the container that the tool will run in. This is useful for ensuring that the tool runs in a consistent environment.
+
+---
 
 ```xml
   <command>
@@ -82,6 +88,8 @@ This section is optional but very common, it specifies the container that the to
 
 This section specifies the command that will be run when the tool is executed. The `__tool_directory__` variable is a special variable that points to the directory where the tool is located. The `input_file` and `output_file` variables are placeholders for the input and output files.
 
+---
+
 ```xml
   <inputs>
     <param type="data" name="input_file" label="Input File" help="Enter the file (containing a sentence) to count the letters" />
@@ -89,6 +97,8 @@ This section specifies the command that will be run when the tool is executed. T
 ```
 
 This section specifies the inputs that the tool requires. In this case, the tool requires a file as input.
+
+---
 
 ```xml
   <outputs>
@@ -98,6 +108,8 @@ This section specifies the inputs that the tool requires. In this case, the tool
 
 This section specifies the outputs that the tool produces. In this case, the tool produces a CSV file.
 
+---
+
 ```xml
   <help>
     This tool counts the number of letter in each word of a file.
@@ -105,6 +117,8 @@ This section specifies the outputs that the tool produces. In this case, the too
 ```
 
 This section provides help text for the tool.
+
+---
 
 By replicating and customising this template, you can create a tool for your Galaxy instance.
 
