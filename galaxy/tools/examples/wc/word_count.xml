@@ -18,14 +18,14 @@
   <inputs>
     <conditional name="input">
         <param name="select_type" type="select" label="Input Type">
-            <option value="text">Text input</option>
             <option value="file">File input</option>
+            <option value="text">Text input</option>
         </param>
-        <when value="text">
-            <param type="text" name="input_str" label="Input String" help="Enter a string to count the words" />
-        </when>
         <when value="file">
             <param type="data" name="input_file" label="Input File" help="Upload a file to count the words" />
+        </when>
+        <when value="text">
+            <param type="text" name="input_str" label="Input String" help="Enter a string to count the words" />
         </when>
     </conditional>
   </inputs>
