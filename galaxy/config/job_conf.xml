@@ -8,12 +8,12 @@
     <destination id="local" runner="local"/>
     <destination id="docker_local" runner="local">
       <param id="docker_enabled">true</param>
-      <param id="docker_volumes">galaxy-show-and-tell_galaxy-store:/galaxy/server</param>
+      <param id="docker_volumes">galaxy-store:/galaxy/server</param>
       <param id="docker_sudo">false</param>
     </destination>
     <destination id="docker_root" runner="local">
       <param id="docker_enabled">true</param>
-      <param id="docker_volumes">galaxy-show-and-tell_galaxy-store:/galaxy/server</param>
+      <param id="docker_volumes">galaxy-store:/galaxy/server</param>
       <param id="docker_sudo">true</param>
     </destination>
   </destinations>
