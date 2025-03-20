@@ -50,6 +50,10 @@ Additionally, the `.env` file should contain the following information:
 - `GALAXY_ADMIN_PASS`: The password for the Galaxy administrator (can randomly generate this using a password manager).
 - `GALAXY_API_KEY`: The API key for the Galaxy administrator (can randomly generate this using a password manager).
 
+> [!TIP]
+> Run this in your shell for a quick start
+> ```NUM=`getent group docker |cut -f3 -d:` ; sed -i "s/{{YOUR_DOCKER_GID}}/$NUM/; s/{{\([^}]*\)}}/\1/g" .env```
+
 With the `.env` file configured, you can now start Galaxy by running the following command:
 
 ```bash
