@@ -31,18 +31,18 @@ You must now configure the `.env` file to give some essential information to the
 
 ```bash
 cp env.template .env
-nano .env # or use your preferred text editor
 ```
 
 There is one critically important variable in the `.env` file that must be set: `DOCKER_GID`.
 
 This variable gives the Galaxy container access to the Docker socket on the host machine, allowing Galaxy to start other containers. To find the `DOCKER_GID`, you can run the following command:
 
-```bash
-getent group docker
-```
-
 The nummer in the output is the `DOCKER_GID`. You can now set this in the `.env` file.
+
+```bash
+getent group docker # look for the number
+nano .env # or use your preferred text editor
+```
 
 Additionally, the `.env` file should contain the following information:
 - `GALAXY_ADMIN_EMAIL`: The email address of the Galaxy administrator.
