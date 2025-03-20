@@ -3,9 +3,6 @@
   <section id="getext" name="Get Data">
     <tool file="data_source/upload.xml" />
   </section>
-  <section id="send" name="Send Data">
-    <tool file="cloud/send.xml" />
-  </section>
   <section id="examples" name="Example Tools">
     <tool file="examples/wc/word_count.xml" />
     <tool file="examples/lc/letter_count.xml" />
