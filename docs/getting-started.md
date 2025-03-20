@@ -19,7 +19,8 @@ This guide assumes the use of a Linux environment. If you are using a different 
 To start Galaxy, you will need to clone this repository and navigate to the directory containing the `docker-compose.yml` file. You can do this by running the following commands:
 
 ```bash
-git clone git@github.com:UoMResearchIT/Galaxy-Show-And-Tell.git
+git clone https://github.com/UoMResearchIT/Galaxy-Show-And-Tell.git
+# git clone git@github.com:UoMResearchIT/Galaxy-Show-And-Tell.git (if using ssh)
 cd Galaxy-Show-And-Tell
 ```
 
