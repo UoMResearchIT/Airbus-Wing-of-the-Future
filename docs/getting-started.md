@@ -52,7 +52,11 @@ Additionally, the `.env` file should contain the following information:
 
 > [!TIP]
 > Run this in your shell for a quick start
-> ```NUM=`getent group docker |cut -f3 -d:` ; sed -i "s/{{YOUR_DOCKER_GID}}/$NUM/; s/{{\([^}]*\)}}/\1/g" .env```
+> 
+> ```bash
+> NUM=`getent group docker |cut -f3 -d: &&
+> sed -i "s/{{YOUR_DOCKER_GID}}/$NUM/; s/{{\([^}]*\)}}/\1/g" .env
+> ```
 
 With the `.env` file configured, you can now start Galaxy by running the following command:
 
