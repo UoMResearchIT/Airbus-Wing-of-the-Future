@@ -12,7 +12,7 @@ def get_api_key(gi):
     print("Checking for existing user")
     print(gi.users.get_users())
     for existing_user in gi.users.get_users():
-        if (existing_user['email'] == "admin@hotmail.co.uk" or
+        if (existing_user['email'] == "admin@example.org" or
             existing_user['username'] == "admin"):
             api_key = gi.users.get_or_create_user_apikey(existing_user['id'])
 

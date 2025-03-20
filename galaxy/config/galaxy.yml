@@ -12,7 +12,7 @@ gravity:
 
 galaxy:
   admin_users:
-   - admin@hotmail.co.uk
+   - admin@example.org
   bootstrap_admin_api_key: 'iamanadminyouknow'
 
   # Data connections
