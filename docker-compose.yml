@@ -25,8 +25,6 @@ services:
       galaxy-postgres:
         condition: service_healthy
     container_name: ${PROJECT_NAME}-galaxy
-    ports:
-      - 8080:8080
     volumes:
       # Persistant storage for Galaxy
       - galaxy-store:/galaxy/server/

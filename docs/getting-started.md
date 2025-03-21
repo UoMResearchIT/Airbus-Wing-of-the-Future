@@ -72,7 +72,7 @@ docker compose logs -f
 
 ### Accessing Galaxy
 
-Once Galaxy is ready, you can access it by navigating to `http://localhost:8080` in your web browser. You will be greeted by the Galaxy login page. You can log in using the credentials you set in the `.env` file to be logged in as the administrator.
+Once Galaxy is ready, you can access it by navigating to `http://localhost:80` in your web browser. You will be greeted by the Galaxy login page. You can log in using the credentials you set in the `.env` file to be logged in as the administrator.
 
 ### Running tools
 

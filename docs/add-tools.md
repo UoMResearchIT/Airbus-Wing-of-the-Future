@@ -152,7 +152,7 @@ docker compose down
 docker compose up -d
 ```
 
-You can now access Galaxy by navigating to `http://localhost:8080` in your web browser. You should see the tool in the `Example Tools` section. You can run the tool by clicking on the tool name and following the instructions.
+You can now access Galaxy by navigating to `http://localhost:80` in your web browser. You should see the tool in the `Example Tools` section. You can run the tool by clicking on the tool name and following the instructions.
 
 If you find that the tool does not work as expected, you can check the logs by running:
 
