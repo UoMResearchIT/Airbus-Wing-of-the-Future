@@ -38,12 +38,33 @@ galaxy:
   data_dir: /galaxy/server/database
   enable_celery_tasks: true
   
-  # # Automation / Ease of Use / User-facing features
+  # Automation / Ease of Use / User-facing features
+  watch_job_rules: 'auto'
+  allow_path_paste: true
+  enable_quotas: true
+  allow_user_deletion: true
   show_welcome_with_login: true
+  expose_user_name: true
+  expose_dataset_path: true
+  expose_potentially_sensitive_job_metrics: true
 
   # Tool security
   outputs_to_working_directory: true
-  new_user_dataset_access_role_default_private: true 
+  new_user_dataset_access_role_default_private: true
+
+  # SQL Performance
+  slow_query_log_threshold: 5
+  enable_per_request_sql_debugging: true
+
+  # File serving Performance
+  nginx_x_accel_redirect_base: /_x_accel_redirect
+
+  # NFS workarounds
+  retry_job_output_collection: 3
+
+  # Debugging
+  cleanup_job: onsuccess
+  allow_user_impersonation: true
  
   # File paths
   builds_file_path: /galaxy/server/tool-data/shared/ucsc/builds.txt.sample
