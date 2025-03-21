@@ -1,7 +1,18 @@
 gravity:
   gunicorn:
     bind: 0.0.0.0:8080
+    workers: 2
+    extra_ars: '--forwarded-allow-ips="*"'
+    preload: true
   celery:
+    concurrency: 2
+    loglevel: WARNING
+  # handlers:
+  #   handler:
+  #     processes: 2
+  #     pools:
+  #       - job-handlers
+  #       - workflow-schedulers
   gx_it_proxy:
   tusd:
   reports:
@@ -11,9 +22,12 @@ gravity:
   galaxy_user: galaxy
 
 galaxy:
+  # Main config
   admin_users:
    - admin@example.org
   bootstrap_admin_api_key: 'iamanadminyouknow'
+  object_store_store_by: uuid
+  id_secret: 'morestufftoreplace'
 
   # Data connections
   #amqp_internal_connection: 'amqp://hello:world@rabbitmq:5672//'
