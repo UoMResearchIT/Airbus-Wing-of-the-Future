@@ -35,7 +35,7 @@ galaxy:
   id_secret: 'morestufftoreplace'
 
   # Data connections
-  #amqp_internal_connection: 'amqp://hello:world@rabbitmq:5672//'
+  amqp_internal_connection: 'amqp://rabbitmq:rabbitmq@rabbitmq:5672//'
   database_connection: postgresql://galaxy:galaxy@galaxy-postgres/galaxy
 
   # Job configuration
