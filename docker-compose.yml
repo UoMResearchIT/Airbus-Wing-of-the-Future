@@ -29,6 +29,8 @@ services:
     volumes:
       # Persistant storage for Galaxy
       - galaxy-store:/galaxy/server/
+      # TUSD binary
+      - ./galaxy/tusd:/usr/local/sbin/tusd
       # Populate the instance
       - ./galaxy/init/bootstrap.py:/galaxy/server/bootstrap.py
       - ./galaxy/tools:/galaxy-tools
