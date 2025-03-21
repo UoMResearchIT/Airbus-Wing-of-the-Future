@@ -3,6 +3,19 @@ secrets:
     file: ./galaxy/secrets/GALAXY_STORAGE_PASSWORD
 
 services:
+  nginx:
+    image: nginx
+    container_name: ${PROJECT_NAME}-nginx
+    restart: unless-stopped
+    depends_on:
+      - galaxy
+    volumes:
+      - ./nginx/galaxy.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "80:80"
+    networks:
+      - galaxy
+    
   galaxy:
     image: galaxy/galaxy-min:24.2.2
     restart: unless-stopped
