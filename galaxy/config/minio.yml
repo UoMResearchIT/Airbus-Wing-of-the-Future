@@ -1,0 +1,21 @@
+- id: lminio_storage
+  version: 0
+  name: Minio Storage
+  description: Connect to a local Minio instance.
+  variables:
+    bucket:
+      type: string
+      help: The bucket to connect to.
+  configuration:
+    type: boto3
+    auth:
+      access_key: 'miniogalaxy'
+      secret_key: 'miniogalaxy'
+    bucket:
+      name: 'galaxy'
+    connection:
+      endpoint_url: 'https://storage.ourawesomelab.org:9000'
+    badges:
+    - type: slower
+    - type: less_secure
+    - type: less_stable

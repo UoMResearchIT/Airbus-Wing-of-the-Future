@@ -42,15 +42,15 @@ services:
       - ./galaxy/config/galaxy.yml:/galaxy/server/config/galaxy.yml
       - ./galaxy/config/datatypes_conf.xml:/galaxy/server/config/datatypes_conf.xml
       - ./galaxy/config/welcome.html:/galaxy/server/static/welcome.html
+      - ./galaxy/config/minio.yml:/galaxy/server/config/minio.yml
       # Provide docker-in-docker
       - /usr/bin/docker:/usr/bin/docker
       - /var/run/docker.sock:/var/run/docker.sock:ro
     post_start:
+      - command: sh -c "pip install boto3" # install boto3 for minio
       - command: sh -c "chown -R 101:101 /galaxy/server/tools/"
         user: root
       - command: sh -c "cp -r /galaxy-tools/* /galaxy/server/tools/"
-    networks:
-      - galaxy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080"]
       interval: 30s
@@ -116,14 +116,32 @@ services:
     volumes:
       - rabbitmq_data:/bitnami/rabbitmq/mnesia
       #- ./config/rabbit/advanced.config:/bitnami/rabbitmq/conf/advanced.config:ro
+    networks:
+      - galaxy
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
+
+  minio:
+    image: minio/minio
+    container_name: ${PROJECT_NAME}-minio
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: miniogalaxy
+      MINIO_ACCESS_KEY: miniogalaxy
+      MINIO_SECRET_KEY: miniogalaxy
+    volumes:
+      - minio-data:/data
+    command: server /data --console-address ":9001"
     networks:
       - galaxy
-
+      
 networks:
   galaxy:
 
@@ -132,3 +150,5 @@ volumes:
     name: galaxy-store
   rabbitmq_data:
     name: rabbitmq-data
+  minio-data:
+    name: minio-data

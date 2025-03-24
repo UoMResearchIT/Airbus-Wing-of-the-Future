@@ -87,6 +87,7 @@ galaxy:
   job_metrics_config_file: /galaxy/server/config/job_metrics_conf.xml
   job_working_directory: /galaxy/server/database/jobs
   migrated_tools_config: /galaxy/server/config/migrated_tools_conf.xml
+  object_store_templates_config_file: /galaxy/server/config/minio.yml
   openid_config_file: /galaxy/server/config/openid_conf.xml.sample
   shed_data_manager_config_file: /galaxy/server/config/shed_data_manager_conf.xml
   shed_tool_config_file: /galaxy/server/config/shed_tool_conf.xml
