@@ -12,6 +12,7 @@ services:
     volumes:
       - galaxy-store:/galaxy/server/
       - ./nginx/galaxy.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./galaxy/config/welcome.html:/galaxy/server/static/welcome.html
     ports:
       - "80:80"
     networks:
@@ -41,7 +42,6 @@ services:
       - ./galaxy/config/job_conf.xml:/galaxy/server/config/job_conf.xml 
       - ./galaxy/config/galaxy.yml:/galaxy/server/config/galaxy.yml
       - ./galaxy/config/datatypes_conf.xml:/galaxy/server/config/datatypes_conf.xml
-      - ./galaxy/config/welcome.html:/galaxy/server/static/welcome.html
       - ./galaxy/config/minio.yml:/galaxy/server/config/minio.yml
       # Provide docker-in-docker
       - /usr/bin/docker:/usr/bin/docker
