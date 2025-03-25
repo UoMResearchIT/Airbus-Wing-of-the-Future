@@ -52,6 +52,7 @@ galaxy:
   expose_user_name: true
   expose_dataset_path: true
   expose_potentially_sensitive_job_metrics: true
+  log_level: WARNING
 
   # Tool security
   outputs_to_working_directory: true
@@ -74,6 +75,38 @@ galaxy:
   # Debugging
   cleanup_job: onsuccess
   allow_user_impersonation: true
+
+  # Object Store
+  # object_store_config:
+  #   type: distributed
+  #   global_max_percent_full: 95
+  #   search_for_missing: true
+  #   backends:
+  #     - id: backend-storage
+  #       type: disk
+  #       store_by: uuid
+  #       weight: 3
+  #       files_dir: /file-store/galaxy/files
+  #       extra_dirs:
+  #         - type: job_work
+  #           path: /file-store/galaxy/jobs
+  object_store_config:
+    type: boto3
+    auth:
+      access_key: yNvbiXjiPBCqwCp4runM
+      secret_key: Tj5QIPUz5aleoHSPO0kQNPClELWGDTCGlEyu6aOs
+    bucket:
+      name: galaxy
+    connection: 
+      endpoint_url: 'http://minio:9000'
+    cache:
+      path: database/object_store_cache_s3
+      size: 1000
+      cache_updated_data: true
+    extra_dirs:
+      - type: job_work
+        path: database/job_working_directory_s3
+  object_store_store_by: uuid
  
   # File paths
   builds_file_path: /galaxy/server/tool-data/shared/ucsc/builds.txt.sample
@@ -83,6 +116,7 @@ galaxy:
   #dependency_resolvers_config_file: /galaxy/server/config/dependency_resolvers_conf.xml
   external_service_type_config_file: /galaxy/server/config/external_service_types_conf.xml.sample
   file_path: /galaxy/server/database/datasets
+  file_sources_config_file: /galaxy/server/config/file_sources_conf.yml
   integrated_tool_panel_config: /galaxy/server/config/integrated_tool_panel.xml
   job_metrics_config_file: /galaxy/server/config/job_metrics_conf.xml
   job_working_directory: /galaxy/server/database/jobs
