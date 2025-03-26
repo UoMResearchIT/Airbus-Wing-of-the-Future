@@ -31,7 +31,6 @@ galaxy:
   admin_users:
    - admin@example.org
   bootstrap_admin_api_key: 'iamanadminyouknow'
-  object_store_store_by: uuid
   id_secret: 'morestufftoreplace'
 
   # Data connections
@@ -77,19 +76,6 @@ galaxy:
   allow_user_impersonation: true
 
   # Object Store
-  # object_store_config:
-  #   type: distributed
-  #   global_max_percent_full: 95
-  #   search_for_missing: true
-  #   backends:
-  #     - id: backend-storage
-  #       type: disk
-  #       store_by: uuid
-  #       weight: 3
-  #       files_dir: /file-store/galaxy/files
-  #       extra_dirs:
-  #         - type: job_work
-  #           path: /file-store/galaxy/jobs
   object_store_config:
     type: boto3
     auth:
@@ -107,7 +93,10 @@ galaxy:
       - type: job_work
         path: database/job_working_directory_s3
   object_store_store_by: uuid
- 
+
+  # File sources
+  file_sources_config_file: /galaxy/server/config/file_sources_conf.yml
+
   # File paths
   builds_file_path: /galaxy/server/tool-data/shared/ucsc/builds.txt.sample
   container_resolvers_config_file: ''
@@ -116,7 +105,6 @@ galaxy:
   #dependency_resolvers_config_file: /galaxy/server/config/dependency_resolvers_conf.xml
   external_service_type_config_file: /galaxy/server/config/external_service_types_conf.xml.sample
   file_path: /galaxy/server/database/datasets
-  file_sources_config_file: /galaxy/server/config/file_sources_conf.yml
   integrated_tool_panel_config: /galaxy/server/config/integrated_tool_panel.xml
   job_metrics_config_file: /galaxy/server/config/job_metrics_conf.xml
   job_working_directory: /galaxy/server/database/jobs

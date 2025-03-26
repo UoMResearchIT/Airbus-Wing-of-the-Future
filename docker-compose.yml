@@ -39,16 +39,16 @@ services:
       - ./galaxy/init/bootstrap.py:/galaxy/server/bootstrap.py
       - ./galaxy/tools:/galaxy-tools
       # Add custom configuration files
+      - ./galaxy/config/galaxy.yml:/galaxy/server/config/galaxy.yml
       - ./galaxy/config/tool_conf.xml:/galaxy/server/config/tool_conf.xml.sample
       - ./galaxy/config/job_conf.xml:/galaxy/server/config/job_conf.xml 
-      - ./galaxy/config/galaxy.yml:/galaxy/server/config/galaxy.yml
       - ./galaxy/config/datatypes_conf.xml:/galaxy/server/config/datatypes_conf.xml
-      - ./galaxy/config/minio.yml:/galaxy/server/config/minio.yml
+      - ./galaxy/config/file_sources_conf.yml:/galaxy/server/config/file_sources_conf.yml
       # Provide docker-in-docker
       - /usr/bin/docker:/usr/bin/docker
       - /var/run/docker.sock:/var/run/docker.sock:ro
     post_start:
-      - command: sh -c "pip install boto3" # install boto3 for minio
+      - command: sh -c "pip install --upgrade s3fs botocore boto3" 
       - command: sh -c "chown -R 101:101 /galaxy/server/tools/"
         user: root
       - command: sh -c "cp -r /galaxy-tools/* /galaxy/server/tools/"
