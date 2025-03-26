@@ -140,10 +140,34 @@ services:
       MINIO_ACCESS_KEY: miniogalaxy
       MINIO_SECRET_KEY: miniogalaxy
     volumes:
-      - minio-data:/data
+      - minio-data:/data 
     command: server /data --console-address ":9001"
     networks:
       - galaxy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+
+  minio-bootstrap:
+    image: minio/mc
+    container_name: ${PROJECT_NAME}-minio-bootstrap
+    depends_on:
+      minio:
+        condition: service_healthy
+    volumes:
+      - ./minio/init/bootstrap.sh:/bootstrap.sh
+    networks:
+      - galaxy
+    entrypoint: >-
+      sh -c "
+      echo 'Bootstraping Minio...';
+      mc alias set minio http://minio:9000 minioadmin miniogalaxy;
+      mc mb minio/galaxy;
+      mc mb minio/galaxy-backend;
+      exit 0;
+      "
       
 networks:
   galaxy:
