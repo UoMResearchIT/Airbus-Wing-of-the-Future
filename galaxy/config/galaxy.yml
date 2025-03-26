@@ -32,6 +32,7 @@ galaxy:
    - admin@example.org
   bootstrap_admin_api_key: 'iamanadminyouknow'
   id_secret: 'morestufftoreplace'
+  log_level: WARNING
 
   # Data connections
   amqp_internal_connection: 'amqp://rabbitmq:rabbitmq@rabbitmq:5672//'
@@ -51,7 +52,6 @@ galaxy:
   expose_user_name: true
   expose_dataset_path: true
   expose_potentially_sensitive_job_metrics: true
-  log_level: WARNING
 
   # Tool security
   outputs_to_working_directory: true
@@ -79,10 +79,10 @@ galaxy:
   object_store_config:
     type: boto3
     auth:
-      access_key: yNvbiXjiPBCqwCp4runM
-      secret_key: Tj5QIPUz5aleoHSPO0kQNPClELWGDTCGlEyu6aOs
+      access_key: minioadmin
+      secret_key: miniogalaxy
     bucket:
-      name: galaxy
+      name: galaxy-backend
     connection: 
       endpoint_url: 'http://minio:9000'
     cache:
