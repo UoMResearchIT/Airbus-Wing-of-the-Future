@@ -34,6 +34,11 @@ galaxy:
   id_secret: 'morestufftoreplace'
   log_level: WARNING
 
+  # Watch file changes 
+  watch_tools: 'true'
+  watch_job_rules: 'true'
+  watch_core_config: 'true'
+
   # Data connections
   amqp_internal_connection: 'amqp://rabbitmq:rabbitmq@rabbitmq:5672//'
   database_connection: postgresql://galaxy:galaxy@galaxy-postgres/galaxy
@@ -44,7 +49,6 @@ galaxy:
   enable_celery_tasks: true
   
   # Automation / Ease of Use / User-facing features
-  watch_job_rules: 'auto'
   allow_path_paste: true
   enable_quotas: true
   allow_user_deletion: true
