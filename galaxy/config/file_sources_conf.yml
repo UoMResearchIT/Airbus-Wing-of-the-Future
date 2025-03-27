@@ -1,0 +1,13 @@
+- type: s3fs
+  # UI
+  id: galaxy-minio-storage
+  label: MinIO storage
+  doc: Galaxy MinIO S3 storage
+  # Config
+  anon: false
+  endpoint_url: "http://minio:9000"
+  bucket: galaxy
+  key: minioadmin
+  secret: miniogalaxy
+
+

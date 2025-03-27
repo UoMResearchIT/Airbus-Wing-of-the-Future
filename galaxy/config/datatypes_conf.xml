@@ -1,23 +1,6 @@
 <?xml version="1.0"?>
 <datatypes>
   <registration converters_path="lib/galaxy/datatypes/converters" display_path="display_applications">
-    <!-- Added datatypes need to also add these to the mcfe_datatypes.py file -->
-    <datatype extension="vtp" type="galaxy.datatypes.mcfe_datatypes:vtp" display_in_upload="true"/>
-    <datatype extension="vtk" type="galaxy.datatypes.mcfe_datatypes:vtp" display_in_upload="true"/>
-    <datatype extension="usd" type="galaxy.datatypes.mcfe_datatypes:usd" display_in_upload="true"/>
-    <datatype extension="usda" type="galaxy.datatypes.mcfe_datatypes:usda" display_in_upload="true"/>
-    <datatype extension="usdc" type="galaxy.datatypes.mcfe_datatypes:usdc" display_in_upload="true"/>
-    <datatype extension="usdz" type="galaxy.datatypes.mcfe_datatypes:usdz" display_in_upload="true"/>
-    <datatype extension="obj" type="galaxy.datatypes.mcfe_datatypes:obj" display_in_upload="true"/>
-    <datatype extension="stp" type="galaxy.datatypes.mcfe_datatypes:stp" display_in_upload="true"/>
-    <datatype extension="step" type="galaxy.datatypes.mcfe_datatypes:step" display_in_upload="true"/>
-    <datatype extension="h5" type="galaxy.datatypes.mcfe_datatypes:h5" display_in_upload="true"/>
-    <datatype extension="h5m" type="galaxy.datatypes.mcfe_datatypes:h5m" display_in_upload="true"/>
-    <datatype extension="out" type="galaxy.datatypes.mcfe_datatypes:out" display_in_upload="true"/>
-    <datatype extension="xml" type="galaxy.datatypes.mcfe_datatypes:xml" display_in_upload="true"/>
-    <datatype extension="stl" type="galaxy.datatypes.mcfe_datatypes:stl" display_in_upload="true"/>
-    <datatype extension="npz" type="galaxy.datatypes.mcfe_datatypes:npz" display_in_upload="true"/>
-    <!-- Existing datatypes -->
     <datatype extension="source.h" type="galaxy.datatypes.data:Text" subclass="true" display_in_upload="true" description="C or cpp header file"/>
     <datatype extension="source.c" type="galaxy.datatypes.data:Text" subclass="true" display_in_upload="true" description="C source file"/>
     <datatype extension="source.cpp" type="galaxy.datatypes.data:Text" subclass="true" display_in_upload="true" description="C++ source file" />

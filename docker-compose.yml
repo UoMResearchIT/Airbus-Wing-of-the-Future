@@ -3,6 +3,21 @@ secrets:
     file: ./galaxy/secrets/GALAXY_STORAGE_PASSWORD
 
 services:
+  nginx:
+    image: nginx
+    container_name: ${PROJECT_NAME}-nginx
+    restart: unless-stopped
+    depends_on:
+      - galaxy
+    volumes:
+      - galaxy-store:/galaxy/server/
+      - ./nginx/galaxy.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./galaxy/config/welcome.html:/galaxy/server/static/welcome.html
+    ports:
+      - "80:80"
+    networks:
+      - galaxy
+    
   galaxy:
     image: galaxy/galaxy-min:24.2.2
     restart: unless-stopped
@@ -11,30 +26,30 @@ services:
     depends_on:
       galaxy-postgres:
         condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
     container_name: ${PROJECT_NAME}-galaxy
-    ports:
-      - 8080:8080
     volumes:
       # Persistant storage for Galaxy
       - galaxy-store:/galaxy/server/
+      - file-store:/file-store
+      # TUSD binary
+      - ./galaxy/tusd:/usr/local/sbin/tusd
       # Populate the instance
       - ./galaxy/init/bootstrap.py:/galaxy/server/bootstrap.py
-      - ./galaxy/tools:/galaxy-tools
+      - ./galaxy/tools:/galaxy/server/tools/
       # Add custom configuration files
+      - ./galaxy/config/galaxy.yml:/galaxy/server/config/galaxy.yml
       - ./galaxy/config/tool_conf.xml:/galaxy/server/config/tool_conf.xml.sample
       - ./galaxy/config/job_conf.xml:/galaxy/server/config/job_conf.xml 
-      - ./galaxy/config/galaxy.yml:/galaxy/server/config/galaxy.yml
       - ./galaxy/config/datatypes_conf.xml:/galaxy/server/config/datatypes_conf.xml
-      - ./galaxy/config/welcome.html:/galaxy/server/static/welcome.html
+      - ./galaxy/config/file_sources_conf.yml:/galaxy/server/config/file_sources_conf.yml
       # Provide docker-in-docker
       - /usr/bin/docker:/usr/bin/docker
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    post_start:
-      - command: sh -c "chown -R 101:101 /galaxy/server/tools/"
-        user: root
-      - command: sh -c "cp -r /galaxy-tools/* /galaxy/server/tools/"
     networks:
       - galaxy
+    command: ["sh", "-c", "pip install --upgrade s3fs botocore boto3 && exec galaxy"]
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080"]
       interval: 30s
@@ -78,11 +93,87 @@ services:
       test: ["CMD-SHELL", "pg_isready -U galaxy"]
       interval: 5s
       timeout: 5s
-      retries: 5    
+      retries: 5
 
+  rabbitmq:
+    image: docker.io/bitnami/rabbitmq:3.12
+    container_name: ${PROJECT_NAME}-rabbitmq
+    restart: unless-stopped
+    ports:
+      - '1883:1883'
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      - RABBITMQ_SECURE_PASSWORD=yes
+      - RABBITMQ_USERNAME=rabbitmq
+      - RABBITMQ_PASSWORD=rabbitmq
+      - RABBITMQ_MANAGEMENT_ALLOW_WEB_ACCESS=yes
+      - RABBITMQ_PLUGINS=rabbitmq_mqtt,rabbitmq_management
+      - RABBITMQ_DISK_FREE_RELATIVE_LIMIT=1.0
+      - RABBITMQ_DISK_FREE_ABSOLUTE_LIMIT=500MB
+      #- RABBITMQ_LOGS=-
+    volumes:
+      - rabbitmq_data:/bitnami/rabbitmq/mnesia
+      #- ./config/rabbit/advanced.config:/bitnami/rabbitmq/conf/advanced.config:ro
+    networks:
+      - galaxy
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  minio:
+    image: minio/minio
+    container_name: ${PROJECT_NAME}-minio
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: miniogalaxy
+      MINIO_ACCESS_KEY: miniogalaxy
+      MINIO_SECRET_KEY: miniogalaxy
+    volumes:
+      - minio-data:/data 
+    command: server /data --console-address ":9001"
+    networks:
+      - galaxy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+
+  minio-bootstrap:
+    image: minio/mc
+    container_name: ${PROJECT_NAME}-minio-bootstrap
+    depends_on:
+      minio:
+        condition: service_healthy
+    volumes:
+      - ./minio/init/bootstrap.sh:/bootstrap.sh
+    networks:
+      - galaxy
+    entrypoint: >-
+      sh -c "
+      echo 'Bootstraping Minio...';
+      mc alias set minio http://minio:9000 minioadmin miniogalaxy;
+      mc mb minio/galaxy;
+      mc mb minio/galaxy-backend;
+      exit 0;
+      "
+      
 networks:
   galaxy:
 
 volumes:
   galaxy-store:
     name: galaxy-store
+  file-store:
+    name: file-store
+  rabbitmq_data:
+    name: rabbitmq-data
+  minio-data:
+    name: minio-data
