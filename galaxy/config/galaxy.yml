@@ -40,7 +40,6 @@ galaxy:
   watch_core_config: 'true'
 
   # Data connections
-  amqp_internal_connection: 'amqp://rabbitmq:rabbitmq@rabbitmq:5672//'
   database_connection: postgresql://galaxy:galaxy@galaxy-postgres/galaxy
 
   # Job configuration
