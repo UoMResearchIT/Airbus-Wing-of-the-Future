@@ -19,7 +19,14 @@ services:
       - galaxy
     
   galaxy:
-    image: galaxy/galaxy-min:${GALAXY_VERSION}
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM galaxy/galaxy-min:${GALAXY_VERSION}
+        USER root
+        RUN apt update && apt -y install docker.io
+        USER galaxy
+        RUN /galaxy/server/.venv/bin/pip3 install boto3
     restart: unless-stopped
     group_add:
       - ${DOCKER_GID}
