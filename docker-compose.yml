@@ -36,7 +36,6 @@ services:
       # TUSD binary
       - ./galaxy/tusd:/usr/local/sbin/tusd
       # Populate the instance
-      - ./galaxy/init/bootstrap.py:/galaxy/server/bootstrap.py
       - ./galaxy/tools:/galaxy/server/tools/
       # Add custom configuration files
       - ./galaxy/config/galaxy.yml:/galaxy/server/config/galaxy.yml
