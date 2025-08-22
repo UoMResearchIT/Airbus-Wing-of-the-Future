@@ -44,7 +44,6 @@ services:
       - ./galaxy/config/datatypes_conf.xml:/galaxy/server/config/datatypes_conf.xml
       - ./galaxy/config/file_sources_conf.yml:/galaxy/server/config/file_sources_conf.yml
       # Provide docker-in-docker
-      - /usr/bin/docker:/usr/bin/docker
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - galaxy
