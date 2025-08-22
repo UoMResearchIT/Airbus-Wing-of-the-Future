@@ -50,10 +50,8 @@ services:
       # Populate the instance
       - ./galaxy/tools:/galaxy/server/tools/
       # Add custom configuration files
-      - ./galaxy/config/galaxy.yml:/galaxy/server/config/galaxy.yml
       - ./galaxy/config/tool_conf.xml:/galaxy/server/config/tool_conf.xml.sample
       - ./galaxy/config/datatypes_conf.xml:/galaxy/server/config/datatypes_conf.xml
-      - ./galaxy/config/file_sources_conf.yml:/galaxy/server/config/file_sources_conf.yml
       # Provide docker-in-docker
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
@@ -126,10 +124,10 @@ services:
       - "9000:9000"
       - "9001:9001"
     environment:
-      MINIO_ROOT_USER: minioadmin
-      MINIO_ROOT_PASSWORD: miniogalaxy
-      MINIO_ACCESS_KEY: miniogalaxy
-      MINIO_SECRET_KEY: miniogalaxy
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
     volumes:
       - minio-data:/data 
     command: server /data --console-address ":9001"
