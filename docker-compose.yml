@@ -54,7 +54,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - galaxy
-    command: ["sh", "-c", "pip install --upgrade s3fs botocore boto3 && exec galaxy"]
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080"]
       interval: 30s
