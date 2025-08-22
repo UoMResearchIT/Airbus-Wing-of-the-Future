@@ -19,7 +19,7 @@ services:
       - galaxy
     
   galaxy:
-    image: galaxy/galaxy-min:24.2.2
+    image: galaxy/galaxy-min:${GALAXY_VERSION}
     restart: unless-stopped
     group_add:
       - ${DOCKER_GID}
@@ -57,7 +57,7 @@ services:
       retries: 5
 
   galaxy-bootstrap:
-    image: galaxy/galaxy-min:24.1.3
+    image: galaxy/galaxy-min:${GALAXY_VERSION}
     container_name: ${PROJECT_NAME}-galaxy-bootstrap
     environment:
       - GALAXY_URL=http://${PROJECT_NAME}-galaxy:8080
