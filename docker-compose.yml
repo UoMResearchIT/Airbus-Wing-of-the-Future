@@ -36,6 +36,8 @@ services:
     depends_on:
       galaxy-postgres:
         condition: service_healthy
+      galaxy-config-template-eval:
+        condition: service_completed_successfully
       minio:
         condition: service_healthy
     container_name: ${PROJECT_NAME}-galaxy
@@ -82,6 +84,21 @@ services:
       - galaxy
     entrypoint: ["python"]
     command: ["/bootstrap.py"]
+
+  galaxy-config-template-eval:
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM alpine:3.22
+        RUN apk update && apk add gettext bash
+        COPY ./galaxy/init/template.sh /template.sh
+    container_name: ${PROJECT_NAME}-galaxy-template-eval
+    env_file: .env
+    volumes:
+      - ./galaxy/config/:/work
+      - galaxy-store:/galaxy/server/
+    working_dir: /work
+    command: /template.sh
     
   galaxy-postgres:
     container_name: ${PROJECT_NAME}-galaxy-postgres
