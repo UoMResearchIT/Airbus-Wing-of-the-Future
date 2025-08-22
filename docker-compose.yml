@@ -33,7 +33,7 @@ services:
     depends_on:
       galaxy-postgres:
         condition: service_healthy
-      rabbitmq:
+      minio:
         condition: service_healthy
     container_name: ${PROJECT_NAME}-galaxy
     volumes:
@@ -130,14 +130,16 @@ services:
         condition: service_healthy
     volumes:
       - ./minio/init/bootstrap.sh:/bootstrap.sh
+      - ./minio/data:/data:ro      
     networks:
       - galaxy
     entrypoint: >-
       sh -c "
       echo 'Bootstraping Minio...';
       mc alias set minio http://minio:9000 minioadmin miniogalaxy;
-      mc mb minio/galaxy;
-      mc mb minio/galaxy-backend;
+      mc mb --ignore-existing minio/galaxy;
+      mc mb --ignore-existing minio/galaxy-backend;
+      mc mirror --watch /data minio/galaxy/library;
       exit 0;
       "
       
