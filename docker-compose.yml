@@ -52,7 +52,6 @@ services:
       # Add custom configuration files
       - ./galaxy/config/galaxy.yml:/galaxy/server/config/galaxy.yml
       - ./galaxy/config/tool_conf.xml:/galaxy/server/config/tool_conf.xml.sample
-      - ./galaxy/config/job_conf.xml:/galaxy/server/config/job_conf.xml 
       - ./galaxy/config/datatypes_conf.xml:/galaxy/server/config/datatypes_conf.xml
       - ./galaxy/config/file_sources_conf.yml:/galaxy/server/config/file_sources_conf.yml
       # Provide docker-in-docker
