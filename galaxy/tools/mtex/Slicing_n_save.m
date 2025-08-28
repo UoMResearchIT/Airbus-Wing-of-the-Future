@@ -1,8 +1,21 @@
-%% Import Script for EBSD Data
-%
-% This script was automatically created by the import wizard. You should
-% run the whoole script or parts of it in order to import your data. There
-% is no problem in making any changes to this script.
+function Slicing_n_save(fname, outputFilename)
+% SLICING_N_SAVE - This function slices an EBSD map into strips, calculates
+%   the ODF and (0002) pole figure intensities for each strip, and saves
+%   the results to a CSV file.
+
+arguments
+    fname (1,1) string = glob('**/*.cpr')
+    outputFilename (1,1) string = with_ext(fname,'_PF_ODF_fractions.csv')
+end
+
+%% Check files / folders
+
+assert(exist(fname,'file'))
+assert(exist(with_ext(fname,'.crc'), 'file'), 'Missing .crc file')
+
+output_dir = fileparts(outputFilename);
+if ~isfolder(output_dir), mkdir(output_dir); end
+
 
 %% Specify Crystal and Specimen Symmetries
 
@@ -15,19 +28,6 @@ CS = {...
 % plotting convention
 setMTEXpref('xAxisDirection','north');
 setMTEXpref('zAxisDirection','outOfPlane');
-
-%% Specify File Names
-
-% Define the sample name here (change this value for another sample)
-% sampleName = '1206634_L-TL';
-sampleName = '1059359_TL-L';
-
-% path to files
-% pname = 'C:\Users\s79606xz\The University of Manchester Dropbox\Xiaohan Zeng\1-Nextwing\3-EBSD\1-data\1206634';
-pname = 'C:\Users\s79606xz\The University of Manchester Dropbox\Xiaohan Zeng\1-Nextwing\3-EBSD\1-data\1059359_TL-L';
-
-% which files to be imported
-fname = fullfile(pname, [sampleName, '.cpr']);
 
 %% Import the Data
 
@@ -113,6 +113,9 @@ minPoints = 50;
 
 rowIdx = 3;  % Start writing strip results from row 3
 for strip_index = 0:num_strips-1
+
+    fprintf('Processing strip %d/%d\n', strip_index+1, num_strips)
+
     % Compute the starting X position of the current strip (in pixels)
     x_min_strip = strip_index * x_width;
     % Define the region: [lower-left x, lower-left y, width, height];
@@ -162,20 +165,20 @@ for strip_index = 0:num_strips-1
     rowIdx = rowIdx + 1;
 end
 
-%% Write the results to a CSV file
-% outputFilename = [sampleName, '_PF_ODF_fractions.csv'];
-% writecell(results, outputFilename);
-% fprintf('All (0002) PF intensity data have been saved to %s\n', outputFilename);
-%%
-% Define the folder path
-folderPath = 'C:\Users\s79606xz\The University of Manchester Dropbox\Xiaohan Zeng\1-Nextwing\3-EBSD\2-result\fatigue life sample';
-
-% Combine folder path with file name
-outputFilename = fullfile(folderPath, [sampleName, '_PF_ODF_fractions.csv']);
-
 % Write results to the CSV file
 writecell(results, outputFilename);
 
 % Print confirmation
 fprintf('All (0002) PF intensity data have been saved to %s\n', outputFilename);
 
+end
+
+function paths = glob(pattern)
+    matches = dir(pattern);
+    paths = arrayfun(@(m) string(fullfile(m.folder, m.name)), matches);
+end
+
+function new_path = with_ext(file_path, ext)
+    [path, name, ~] = fileparts(file_path);
+    new_path = fullfile(path, strcat(name, ext));
+end
